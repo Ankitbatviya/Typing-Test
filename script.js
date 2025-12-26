@@ -120,6 +120,8 @@ referenceInput.addEventListener('input', () => {
     incorrectEl.textContent = incorrectCount;
 
     if (typedChars.length === totalChars) {
+
+        endBtn.focus();
         overlay.classList.add('overlay');
         overlayEnd.classList.remove('hidden');
         document.getElementById('end-correct-value').textContent = correctCount;
