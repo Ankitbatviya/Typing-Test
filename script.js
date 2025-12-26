@@ -121,6 +121,7 @@ referenceInput.addEventListener('input', () => {
 
     if (typedChars.length === totalChars) {
 
+        referenceInput.blur();
         endBtn.focus();
         overlay.classList.add('overlay');
         overlayEnd.classList.remove('hidden');

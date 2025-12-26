@@ -1,5 +1,6 @@
 @import url(stylesheet/notification.css);
 @import url(stylesheet/customTags.css);
+
 /* =========================
    GLOBAL RESET & BASE SETUP
    ========================= */
@@ -23,8 +24,9 @@
 body {
     background-color: black;
     color: aliceblue;
-    font-family: Sora;
-    height: 100vh;
+    font-family: Sora, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 /* =========================
@@ -32,8 +34,11 @@ body {
    ========================= */
 header {
     width: 90%;
+    max-width: 1400px;
     height: 7vh;
+    min-height: 60px;
     margin: auto;
+    padding: 0 1rem;
 
     display: flex;
     justify-content: space-between;
@@ -46,11 +51,13 @@ header {
     background: linear-gradient(45deg, rgb(11, 114, 137), yellow);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-size: 28px;
+    background-clip: text;
+    font-size: clamp(20px, 4vw, 28px);
+    font-weight: 600;
 }
 
 .trophy-icon {
-    font-size: 24px;
+    font-size: clamp(18px, 3.5vw, 24px);
 }
 
 /* =========================
@@ -58,8 +65,10 @@ header {
    ========================= */
 main {
     width: 90%;
-    height: 90vh;
+    max-width: 1400px;
+    min-height: calc(93vh - 60px);
     margin: 20px auto 0;
+    padding: 0 1rem;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -68,10 +77,14 @@ main {
 
 /* Reference Text Display */
 #Reference {
-    font-size: 30px;
-    width: 90%;
-    overflow: hidden;
+    font-size: clamp(18px, 3vw, 30px);
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
     margin-bottom: 20px;
+    line-height: 1.6;
+    max-height: 40vh;
+    padding: 0.5rem;
 }
 
 /* User Typing Input */
@@ -79,12 +92,15 @@ main {
     border: none;
     background: transparent;
     width: 100%;
-    height: 44vh;
+    height: clamp(200px, 40vh, 44vh);
     color: snow;
-    font-size: 40px;
+    font-size: clamp(20px, 4vw, 40px);
     resize: none;
     outline: none;
     margin-top: 20px;
+    line-height: 1.5;
+    padding: 0.5rem;
+    font-family: inherit;
 }
 
 /* =========================
@@ -96,20 +112,42 @@ main {
     background: linear-gradient(50deg, red, rgb(230, 71, 42));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-
-
-/* Timer Display */
-/* .Time {
+/* Highlighted Whitespace */
+.whitespace {
     background: linear-gradient(
         45deg,
-        rgba(11, 114, 137),
-        rgba(255, 255, 0)
+        rgba(11, 114, 137, 0.6),
+        rgba(255, 255, 0, 0.6)
     );
+    font-size: clamp(16px, 3vw, 25px);
+}
+
+/* Correct & Incorrect Typing */
+.correct {
+    background: linear-gradient(50deg, rgb(2, 165, 2), rgb(30, 122, 70));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-} */
+    background-clip: text;
+}
+
+.incorrect {
+    background: linear-gradient(50deg, red, rgb(230, 71, 42));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Show & hide */
+.show {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
 
 /* =========================
    INFO / STATS CONTAINER
@@ -117,10 +155,17 @@ main {
 .Info-Container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 0.5rem;
 }
 
 .Info-Container div {
     display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: clamp(14px, 2vw, 18px);
 }
 
 /* =========================
@@ -130,14 +175,11 @@ main {
     position: fixed;
     inset: 0;
     z-index: 9999;
-
-    background: rgba(0, 0, 0, 0.9);
-
+    background: rgba(0, 0, 0, 0.95);
     display: flex;
     justify-content: center;
     align-items: center;
-
-    padding: 1rem;
+    padding: 1.5rem;
     box-sizing: border-box;
 }
 
@@ -146,29 +188,30 @@ main {
    ========================= */
 #overlay-Start {
     width: 100%;
+    max-width: 600px;
 }
 
 /* Main Start Container */
 .overlay-start-radio-group {
     width: 100%;
-    max-width: 600px;
-    min-height: 320px;
-
     margin: auto;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.2rem;
-
+    gap: 1.5rem;
     text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
 }
 
 /* Title */
 .overlay-start-radio-group h2 {
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    margin: 0.5rem 0;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin: 0;
+    font-weight: 700;
 }
 
 /* =========================
@@ -191,32 +234,32 @@ main {
 
 /* Radio labels */
 .overlay-start-radio-group label {
-    padding: 0.6rem 1.2rem;
-    min-width: 110px;
-
+    padding: clamp(0.5rem, 2vw, 0.7rem) clamp(1rem, 3vw, 1.5rem);
+    min-width: clamp(90px, 20vw, 110px);
     border: 2px solid #fff;
-    border-radius: 6px;
-
+    border-radius: 8px;
     background: transparent;
     color: #fff;
-
     font-weight: 500;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     cursor: pointer;
-
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
 /* Hover */
 .overlay-start-radio-group label:hover {
     border-color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+    transform: translateY(-2px);
 }
 
 /* Selected */
-.overlay-start-radio-group
-input[type="radio"]:checked + label {
+.overlay-start-radio-group input[type="radio"]:checked + label {
     background-color: #4ade80;
     border-color: #22c55e;
     color: #000;
+    transform: scale(1.05);
 }
 
 /* =========================
@@ -225,37 +268,29 @@ input[type="radio"]:checked + label {
 .overlay-start-radio-group button {
     width: 100%;
     max-width: 320px;
-    padding: 0.7rem 1rem;
-
+    padding: clamp(0.6rem, 2vw, 0.8rem) 1.5rem;
     margin-top: 1rem;
-
     border: 2px solid #fff;
-    border-radius: 6px;
-
+    border-radius: 8px;
     background: transparent;
     color: #fff;
-
-    font-size: 1rem;
-    font-weight: 500;
-    letter-spacing: 0.4px;
-
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    font-weight: 600;
+    letter-spacing: 0.5px;
     cursor: pointer;
-
-    transition:
-        background-color 0.2s ease,
-        transform 0.1s ease,
-        box-shadow 0.1s ease;
+    transition: all 0.3s ease;
 }
 
 /* Hover */
 .overlay-start-radio-group button:hover {
-    background-color: rgba(255, 255, 255, 0.12);
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 /* Active */
 .overlay-start-radio-group button:active {
-    transform: scale(0.96);
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+    transform: scale(0.98);
 }
 
 /* Focus (keyboard) */
@@ -268,67 +303,338 @@ input[type="radio"]:checked + label {
    END SCREEN
    ========================= */
 #overlay-End {
-    /* display: none; */
-
     width: 100%;
     max-width: 500px;
-
     text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
 }
 
 /* Score title */
 #overlay-End h1 {
-    font-size: clamp(2rem, 6vw, 4rem);
+    font-size: clamp(2rem, 8vw, 4rem);
     background: linear-gradient(90deg, #4ade80, #22c55e);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
 }
 
 /* Score rows */
 #overlay-End div {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 1rem;
-
     margin: 1rem 0;
+    padding: 0.5rem;
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
 }
 
 /* End screen button */
 #overlay-End button {
     width: 100%;
     max-width: 280px;
-    padding: 0.6rem 1rem;
-
-    margin-top: 1.5rem;
-
+    padding: clamp(0.6rem, 2vw, 0.8rem) 1.5rem;
+    margin-top: 2rem;
     background-color: #0f1f17;
     color: #4ade80;
-
-    border: 1px solid #1f7a4f;
-    border-radius: 6px;
-
-    font-size: 0.9rem;
+    border: 2px solid #1f7a4f;
+    border-radius: 8px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
     font-weight: 600;
-
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#overlay-End button:hover {
+    background-color: #1f7a4f;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(31, 122, 79, 0.4);
 }
 
 /* =========================
-   MOBILE OPTIMIZATION
+   NOTIFICATION SYSTEM
    ========================= */
-@media (max-width: 600px) {
+#notification-container {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    z-index: 10000;
+    max-width: 90vw;
+}
+
+.notification {
+    min-width: 200px;
+    max-width: 320px;
+    padding: 0.9rem 1rem;
+    border-radius: 8px;
+    color: #fff;
+    font-size: clamp(0.85rem, 2vw, 0.95rem);
+    font-weight: 500;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    animation: slideIn 0.3s ease;
+}
+
+.notification.success { background: #22c55e; }
+.notification.error { background: #ef4444; }
+.notification.warning { background: #f59e0b; }
+.notification.info { background: #3b82f6; }
+
+@keyframes slideIn {
+    from { transform: translateX(120%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+    to { transform: translateX(120%); opacity: 0; }
+}
+
+/* =========================
+   TABLET OPTIMIZATION (768px - 1024px)
+   ========================= */
+@media (max-width: 1024px) and (min-width: 769px) {
+    header {
+        width: 92%;
+        padding: 0 1.5rem;
+    }
+
+    main {
+        width: 92%;
+        padding: 0 1.5rem;
+    }
+
+    #Reference {
+        font-size: 24px;
+        max-height: 35vh;
+    }
+
+    .Reference-Input {
+        height: 38vh;
+        font-size: 32px;
+    }
+
+    .overlay-start-radio-group {
+        padding: 2.5rem;
+    }
+
+    #overlay-End {
+        padding: 2.5rem;
+    }
+}
+
+/* =========================
+   MOBILE OPTIMIZATION (< 768px)
+   ========================= */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    header {
+        width: 95%;
+        height: auto;
+        min-height: 50px;
+        padding: 1rem;
+    }
+
+    main {
+        width: 95%;
+        min-height: auto;
+        padding: 0.5rem;
+        margin-top: 10px;
+        justify-content: flex-start;
+        gap: 1rem;
+    }
+
+    #Reference {
+        font-size: 20px;
+        margin-bottom: 15px;
+        max-height: 30vh;
+        padding: 0.75rem;
+    }
+
+    .Reference-Input {
+        height: 30vh;
+        font-size: 24px;
+        margin-top: 10px;
+        padding: 0.75rem;
+    }
+
+    .Info-Container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+    }
+
+    .Info-Container div {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .overlay {
+        padding: 1rem;
+    }
+
+    .overlay-start-radio-group {
+        padding: 1.5rem;
+        gap: 1.2rem;
+    }
 
     .overlay-start-radio-group > div:nth-of-type(2) {
         flex-direction: column;
         align-items: stretch;
+        gap: 0.8rem;
     }
 
     .overlay-start-radio-group label {
         width: 100%;
+        padding: 0.8rem;
+    }
+
+    .overlay-start-radio-group button {
+        max-width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    #overlay-End {
+        padding: 1.5rem;
+        max-width: 100%;
     }
 
     #overlay-End div {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        font-size: 1rem;
+    }
+
+    #overlay-End button {
+        max-width: 100%;
+        margin-top: 1.5rem;
+    }
+
+    #notification-container {
+        top: 1rem;
+        right: 1rem;
+        left: 1rem;
+        gap: 0.6rem;
+    }
+
+    .notification {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
+/* =========================
+   SMALL MOBILE (< 480px)
+   ========================= */
+@media (max-width: 480px) {
+    header {
+        padding: 0.75rem;
+    }
+
+    main {
+        padding: 0.5rem;
+    }
+
+    #Reference {
+        font-size: 16px;
+        padding: 0.5rem;
+        max-height: 25vh;
+    }
+
+    .Reference-Input {
+        font-size: 20px;
+        height: 28vh;
+        padding: 0.5rem;
+    }
+
+    .overlay-start-radio-group {
+        padding: 1rem;
+    }
+
+    .overlay-start-radio-group h2 {
+        font-size: 1.5rem;
+    }
+
+    #overlay-End {
+        padding: 1rem;
+    }
+
+    #overlay-End h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+
+    #overlay-End div {
+        font-size: 0.9rem;
+        padding: 0.25rem;
+    }
+}
+
+/* =========================
+   LANDSCAPE MOBILE
+   ========================= */
+@media (max-height: 500px) and (orientation: landscape) {
+    header {
+        height: auto;
+        min-height: 40px;
+    }
+
+    main {
+        min-height: auto;
+        margin-top: 10px;
+    }
+
+    #Reference {
+        max-height: 20vh;
+        font-size: 18px;
+    }
+
+    .Reference-Input {
+        height: 25vh;
+        font-size: 22px;
+    }
+
+    .overlay-start-radio-group,
+    #overlay-End {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+}
+
+/* =========================
+   TOUCH DEVICE IMPROVEMENTS
+   ========================= */
+@media (hover: none) and (pointer: coarse) {
+    .overlay-start-radio-group label,
+    .overlay-start-radio-group button,
+    #overlay-End button {
+        min-height: 44px;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .overlay-start-radio-group label:active {
+        transform: scale(0.98);
+    }
+}
+
+/* =========================
+   ACCESSIBILITY
+   ========================= */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
