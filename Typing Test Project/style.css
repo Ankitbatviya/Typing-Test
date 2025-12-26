@@ -1,0 +1,334 @@
+@import url(stylesheet/notification.css);
+@import url(stylesheet/customTags.css);
+/* =========================
+   GLOBAL RESET & BASE SETUP
+   ========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* =========================
+   FONT IMPORT
+   ========================= */
+@font-face {
+    font-family: Sora;
+    src: url(Font/Sora/Sora-VariableFont_wght.ttf);
+}
+
+/* =========================
+   BODY / ROOT STYLES
+   ========================= */
+body {
+    background-color: black;
+    color: aliceblue;
+    font-family: Sora;
+    height: 100vh;
+}
+
+/* =========================
+   HEADER SECTION
+   ========================= */
+header {
+    width: 90%;
+    height: 7vh;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo & Trophy Gradient Text */
+.logo,
+.trophy-icon {
+    background: linear-gradient(45deg, rgb(11, 114, 137), yellow);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 28px;
+}
+
+.trophy-icon {
+    font-size: 24px;
+}
+
+/* =========================
+   MAIN CONTENT AREA
+   ========================= */
+main {
+    width: 90%;
+    height: 90vh;
+    margin: 20px auto 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    position: relative;
+}
+
+/* Reference Text Display */
+#Reference {
+    font-size: 30px;
+    width: 90%;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+/* User Typing Input */
+.Reference-Input {
+    border: none;
+    background: transparent;
+    width: 100%;
+    height: 44vh;
+    color: snow;
+    font-size: 40px;
+    resize: none;
+    outline: none;
+    margin-top: 20px;
+}
+
+/* =========================
+   TEXT STATE STYLES
+   ========================= */
+
+/* Notes / Alerts */
+.Note-Text {
+    background: linear-gradient(50deg, red, rgb(230, 71, 42));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+/* Timer Display */
+/* .Time {
+    background: linear-gradient(
+        45deg,
+        rgba(11, 114, 137),
+        rgba(255, 255, 0)
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+} */
+
+/* =========================
+   INFO / STATS CONTAINER
+   ========================= */
+.Info-Container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Info-Container div {
+    display: flex;
+}
+
+/* =========================
+   OVERLAY BASE
+   ========================= */
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    background: rgba(0, 0, 0, 0.9);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+/* =========================
+   START SCREEN
+   ========================= */
+#overlay-Start {
+    width: 100%;
+}
+
+/* Main Start Container */
+.overlay-start-radio-group {
+    width: 100%;
+    max-width: 600px;
+    min-height: 320px;
+
+    margin: auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+
+    text-align: center;
+}
+
+/* Title */
+.overlay-start-radio-group h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    margin: 0.5rem 0;
+}
+
+/* =========================
+   RADIO GROUP
+   ========================= */
+
+/* Hide default radio */
+.overlay-start-radio-group input[type="radio"] {
+    display: none;
+}
+
+/* Radio button wrapper */
+.overlay-start-radio-group > div:nth-of-type(2) {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Radio labels */
+.overlay-start-radio-group label {
+    padding: 0.6rem 1.2rem;
+    min-width: 110px;
+
+    border: 2px solid #fff;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #fff;
+
+    font-weight: 500;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+/* Hover */
+.overlay-start-radio-group label:hover {
+    border-color: #4ade80;
+}
+
+/* Selected */
+.overlay-start-radio-group
+input[type="radio"]:checked + label {
+    background-color: #4ade80;
+    border-color: #22c55e;
+    color: #000;
+}
+
+/* =========================
+   START BUTTON
+   ========================= */
+.overlay-start-radio-group button {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.7rem 1rem;
+
+    margin-top: 1rem;
+
+    border: 2px solid #fff;
+    border-radius: 6px;
+
+    background: transparent;
+    color: #fff;
+
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.4px;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease,
+        box-shadow 0.1s ease;
+}
+
+/* Hover */
+.overlay-start-radio-group button:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Active */
+.overlay-start-radio-group button:active {
+    transform: scale(0.96);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+/* Focus (keyboard) */
+.overlay-start-radio-group button:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+}
+
+/* =========================
+   END SCREEN
+   ========================= */
+#overlay-End {
+    /* display: none; */
+
+    width: 100%;
+    max-width: 500px;
+
+    text-align: center;
+}
+
+/* Score title */
+#overlay-End h1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    background: linear-gradient(90deg, #4ade80, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Score rows */
+#overlay-End div {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+
+    margin: 1rem 0;
+}
+
+/* End screen button */
+#overlay-End button {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.6rem 1rem;
+
+    margin-top: 1.5rem;
+
+    background-color: #0f1f17;
+    color: #4ade80;
+
+    border: 1px solid #1f7a4f;
+    border-radius: 6px;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+/* =========================
+   MOBILE OPTIMIZATION
+   ========================= */
+@media (max-width: 600px) {
+
+    .overlay-start-radio-group > div:nth-of-type(2) {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .overlay-start-radio-group label {
+        width: 100%;
+    }
+
+    #overlay-End div {
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <!-- Notification container -->
+    <div id="notification-container"></div>
+    <header>
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-keyboard logo"></i>
+            <p>Typing Test</p>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+            <i class="fa-solid fa-trophy trophy-icon"></i>
+            <div style="display: flex; gap: 5px;">
+                <p style="font-weight: 200; color: gray;">Personal Best:</p>
+                <p>23WPM</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div>
+            <div class="text" id="Reference"></div>
+            <textarea name="" id="Reference-Input" class="Reference-Input" placeholder="Write here...."></textarea>
+
+            <!-- * information Area -->
+            <div class="Info-Container">
+                <div style="width: 225px; justify-content: space-between;">
+                    <div><strong class="correct">Correct : </strong>
+                        <p id="correct-value"></p>
+                    </div>
+                    <div><strong class="incorrect">incorrect :</strong>
+                        <p id="incorrect-value"></p>
+                    </div>
+                </div>
+
+                <!-- <div><strong class="Time">Time :</strong></div> -->
+            </div>
+        </div>
+
+    </main>
+    <!-- ! overlay -->
+    <div class="overlay" id="overlay">
+
+        <div id="overlay-Start">
+            <div class="overlay-start-radio-group">
+
+                <div style="display: flex; align-items: center; gap: 10px;  ">
+                    <i class="fa-solid fa-keyboard logo" style="font-size: 3rem;"></i>
+                    <p style="font-size: 2rem;">Typing King</p>
+                </div>
+
+                <h2>Select Difficulty</h2>
+                <div>
+
+                    <input type="radio" id="easy" class="difficulty-rdo" name="difficulty" value="easy">
+                    <label for="easy">Easy</label>
+
+                    <input type="radio" id="medium" class="difficulty-rdo" name="difficulty" value="medium">
+                    <label for="medium">Medium</label>
+
+                    <input type="radio" id="advanced" class="difficulty-rdo" name="difficulty" value="advanced">
+                    <label for="advanced">Advanced</label>
+                </div>
+                <button id="Start-btn">start</button>
+            </div>
+        </div>
+
+        <div id="overlay-End">
+            <h1>Your Score </h1>
+            <div><strong class="correct"> Correct Word :</strong>
+                <p id="end-correct-value"></p>
+            </div>
+            <div><strong class="incorrect"> Incorrect Word :</strong>
+                <p id="end-incorrect-value"></p>
+            </div>
+            <button id="End-btn">Start New</button>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+
+</html>
