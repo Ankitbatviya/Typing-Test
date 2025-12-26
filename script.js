@@ -35,7 +35,7 @@ let incorrectCount = 0;
 // =======================
 // INITIAL SETUP
 // =======================
-overlayEnd.classList.add('hidden');
+// overlayEnd.classList.add('');
 
 // =======================
 // UTILITIES

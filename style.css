@@ -172,7 +172,7 @@ main {
 }
 
 .Info-Container div span:last-child {
-    min-width: 30px;
+    min-width: 20px;
     text-align: left;
 }
 
